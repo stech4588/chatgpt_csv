@@ -7,13 +7,9 @@
 <script setup>
 import { ref, markRaw } from 'vue'
 import { useRouter } from 'vue-router'
-import {useHead} from "@vueuse/head";
 import './styles.css'
 
-useHead({
-    title: 'E-Com Web',
-    description: 'My E-Com Web'
-});
+
 // Load layout components dynamically.
 const layouts = import.meta.globEager('../layouts/*.vue')
 const layoutComponents = Object.keys(layouts).reduce((components, path) => {
