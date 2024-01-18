@@ -4,6 +4,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ApiLog;
 use App\Models\CsvData1;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,12 +44,12 @@ class ChatController extends Controller
                     // Process and store CSV data in the database
                     if (isset($colValue)  && trim($colValue) !== '') {
                         try {
+
                             $result = OpenAI::completions()->create([
                                 'max_tokens' => 100,
                                 'model' => 'gpt-3.5-turbo-instruct',
                                 'prompt' => $request->input('prompt').' '.$colValue,
                             ]);
-
                             $csvData = new CsvData1([
                                 'row' => $index,
                                 'col' => $colIndex + 1, // Assuming columns start from 1
@@ -60,6 +61,10 @@ class ChatController extends Controller
 
                             $csvData->save();
                         } catch (\Exception $e) {
+                            new ApiLog([
+                                'method' => 'sendToOpenAI',
+                                'response_content' => $e->getMessage(),
+                            ]);
                             // Handle API request errors
                             \Log::error('Error processing CSV row: ' . $e->getMessage());
                         }
