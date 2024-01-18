@@ -2,7 +2,7 @@
     <div v-if="loading === false">
         <div v-if="customersUpdate === true">
             <h1>
-                Update Customer {{ $route.params.id }}
+                Update User {{ $route.params.id }}
             </h1>
             <div class="row">
                 <div class="col-lg-12 m-auto">

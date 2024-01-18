@@ -1,7 +1,7 @@
 <template>
     <div v-if="loading === false">
         <div v-if="customersView === true">
-            <h1>Customers</h1>
+            <h1>Users</h1>
 
             <div class="container">
                 <div class="row justify-content-center">

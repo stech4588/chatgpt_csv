@@ -2,7 +2,7 @@
     <div v-if="loading === false">
         <div v-if="customersAdd === true">
             <h1>
-                Add Customer
+                Add User
             </h1>
             <div class="row">
                 <div class="col-lg-12 m-auto">

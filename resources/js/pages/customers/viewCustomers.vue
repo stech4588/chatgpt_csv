@@ -2,7 +2,7 @@
     <div v-if="loading === false">
         <div v-if="customersView === true">
             <h1>
-                Customer Detail {{ $route.params.id }}
+                User Detail {{ $route.params.id }}
             </h1>
             <table class="table table-bordered">
                 <thead>

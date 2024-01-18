@@ -21,7 +21,7 @@
                             <router-link v-if="customersView" :to="{ name: 'customers' }" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">
                               <h5 class="sidebar-title" :class="{ 'active': $route.name === 'customers' }">
                                   <font-awesome-icon icon="users" fixed-width />
-                                    <span class="sidebar-label" :class="{ 'hidden': isSidebarCollapsed }">Customers</span>
+                                    <span class="sidebar-label" :class="{ 'hidden': isSidebarCollapsed }">Users</span>
                               </h5>
                           </router-link>
                             <router-link v-if="template1" :to="{ name: 'template1' }" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">

@@ -73,6 +73,7 @@ class ChatController extends Controller
             return response()->json('success',200);
 
         } catch (\Exception $e) {
+            return response()->json('error',500);
 
         }
     }
@@ -84,7 +85,7 @@ class ChatController extends Controller
             // Fetch data from CsvData1 model based on filename
 
             // Create a new CSV file for processed data
-            $processedFilePath = storage_path('app/processed_files/processed_file.csv');
+            $processedFilePath = storage_path('app/processed_file.csv');
             $processedCSV = Writer::createFromPath($processedFilePath, 'w+');
 
             for ($r=0;$r<=$uniqueRowCount;$r++) {
@@ -104,7 +105,7 @@ class ChatController extends Controller
         }
     }
     public function downloadProcessedFile() {
-        $filePath = storage_path("app/processed_files/processed_file.csv");
+        $filePath = storage_path("app/processed_file.csv");
         return response()->download($filePath, 'processed_file.csv');
     }
 
@@ -115,38 +116,50 @@ class ChatController extends Controller
             set_time_limit(0); // Disable time limit for this function
 
             $request->validate([
-                'csvFile1' => 'required|mimes:csv,txt|max:10240', // Adjust max file size as needed
-                'csvFile2' => 'required|mimes:csv,txt|max:10240', // Adjust max file size as needed
+                'csvFile1' => 'required|mimes:csv,txt|max:10240',
+                'csvFile2' => 'required|mimes:csv,txt|max:10240',
                 'prompt' => 'required|string',
             ]);
 
-            $file = $request->file('csvFile1');
-            $filePath = $file->storeAs('csv_files',  now()->format('YmdHis') .'uploaded_file.csv');
+            // Read CSV files
+            $file1 = $request->file('csvFile1');
+            $file2 = $request->file('csvFile2');
 
-            // Read CSV file
-            $csv = Reader::createFromPath(storage_path("app/{$filePath}"), 'r');
+            $filePath1 = $file1->storeAs('csv_files', now()->format('YmdHis') . 'uploaded_file1.csv');
+            $filePath2 = $file2->storeAs('csv_files', now()->format('YmdHis') . 'uploaded_file2.csv');
 
-            // Loop through each row in the CSV file
-            foreach ($csv as $index => $row) {
+            $csv1 = Reader::createFromPath(storage_path("app/{$filePath1}"), 'r');
+            $csv2 = Reader::createFromPath(storage_path("app/{$filePath2}"), 'r');
 
+            // Validate the number of rows and columns
+            $rows1 = iterator_count($csv1->getIterator());
+            $rows2 = iterator_count($csv2->getIterator());
 
-                // Loop through each column in the row
-                foreach ($row as $colIndex => $colValue) {
+            if ($rows1 !== $rows2) {
+                return response()->json('Error: Both CSV files must have the same number of rows.', 400);
+            }
+
+            foreach ($csv1 as $index => $row1) {
+                $row2 = $csv2->fetchOne($index); // Fetch corresponding row from the second file
+
+                foreach ($row1 as $colIndex => $colValue1) {
+                    $colValue2 = $row2[$colIndex];
+
                     // Process and store CSV data in the database
-                    if (isset($colValue)  && trim($colValue) !== '') {
+                    if (isset($colValue1) && trim($colValue1) !== '' && isset($colValue2) && trim($colValue2) !== '') {
                         try {
                             $result = OpenAI::completions()->create([
                                 'max_tokens' => 100,
                                 'model' => 'gpt-3.5-turbo-instruct',
-                                'prompt' => $request->input('prompt').' '.$colValue,
+                                'prompt' => $request->input('prompt') . ' ' . $colValue1 . ' and ' . $colValue2,
                             ]);
 
                             $csvData = new CsvData1([
                                 'row' => $index,
                                 'col' => $colIndex + 1, // Assuming columns start from 1
-                                'prompt' => $request->input('prompt').' '.$colValue,
+                                'prompt' => $request->input('prompt') . ' ' . $colValue1 . ' and ' . $colValue2,
                                 'data' => $result->choices[0]->text,
-                                'file_path' => $filePath,
+                                'file_path' => $filePath1, // or $filePath2, depending on your needs
                                 'created_by' => $user->id,
                             ]);
 
@@ -159,13 +172,15 @@ class ChatController extends Controller
                     }
                 }
             }
-            $processedFilePath = $this->generateProcessedCSV($filePath);
+
+            $processedFilePath = $this->generateProcessedCSV($filePath1); // or $this->generateProcessedCSV($filePath2);
 
             // You can redirect to a page with a download link or directly force download
-            return response()->json('success',200);
+            return response()->json('success', 200);
 
         } catch (\Exception $e) {
-
+            // Handle other exceptions
+            return response()->json('Error: ' . $e->getMessage(), 500);
         }
     }
 
