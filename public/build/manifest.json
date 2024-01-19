@@ -1,0 +1,230 @@
+{
+  "resources/js/app.css": {
+    "file": "assets/app-c560668c.css",
+    "src": "resources/js/app.css"
+  },
+  "resources/js/app.js": {
+    "css": [
+      "assets/app-c560668c.css"
+    ],
+    "dynamicImports": [
+      "resources/js/pages/dashboard.vue",
+      "resources/js/pages/auth/Login.vue",
+      "resources/js/pages/auth/Register.vue",
+      "resources/js/pages/dashboard.vue",
+      "resources/js/pages/template1.vue",
+      "resources/js/pages/template2.vue",
+      "resources/js/pages/permission/permission.vue",
+      "resources/js/pages/permission/addpermission.vue",
+      "resources/js/pages/permission/updatepermission.vue",
+      "resources/js/pages/permission/viewpermission.vue",
+      "resources/js/pages/role/role.vue",
+      "resources/js/pages/role/addrole.vue",
+      "resources/js/pages/role/updaterole.vue",
+      "resources/js/pages/role/viewrole.vue",
+      "resources/js/pages/customers/listCustomers.vue",
+      "resources/js/pages/customers/addCustomers.vue",
+      "resources/js/pages/customers/updateCustomers.vue",
+      "resources/js/pages/customers/viewCustomers.vue",
+      "resources/js/pages/settings/index.vue",
+      "resources/js/pages/settings/profile.vue",
+      "resources/js/pages/settings/password.vue"
+    ],
+    "file": "assets/app-8617d8f9.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  },
+  "resources/js/pages/auth/Login.css": {
+    "file": "assets/Login-190e1971.css",
+    "src": "resources/js/pages/auth/Login.css"
+  },
+  "resources/js/pages/auth/Login.vue": {
+    "css": [
+      "assets/Login-190e1971.css"
+    ],
+    "file": "assets/Login-25a353c6.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/pages/auth/Login.vue"
+  },
+  "resources/js/pages/auth/Register.css": {
+    "file": "assets/Register-55acf421.css",
+    "src": "resources/js/pages/auth/Register.css"
+  },
+  "resources/js/pages/auth/Register.vue": {
+    "css": [
+      "assets/Register-55acf421.css"
+    ],
+    "file": "assets/Register-9fe8882b.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/pages/auth/Register.vue"
+  },
+  "resources/js/pages/customers/addCustomers.vue": {
+    "file": "assets/addCustomers-356b298a.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/pages/customers/addCustomers.vue"
+  },
+  "resources/js/pages/customers/listCustomers.vue": {
+    "file": "assets/listCustomers-e6ea5271.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/pages/customers/listCustomers.vue"
+  },
+  "resources/js/pages/customers/updateCustomers.vue": {
+    "file": "assets/updateCustomers-ee25e0d0.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/pages/customers/updateCustomers.vue"
+  },
+  "resources/js/pages/customers/viewCustomers.vue": {
+    "file": "assets/viewCustomers-d721220b.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/pages/customers/viewCustomers.vue"
+  },
+  "resources/js/pages/dashboard.vue": {
+    "file": "assets/dashboard-30a9c82b.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/pages/dashboard.vue"
+  },
+  "resources/js/pages/permission/addpermission.vue": {
+    "file": "assets/addpermission-1965d6eb.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/pages/permission/addpermission.vue"
+  },
+  "resources/js/pages/permission/permission.vue": {
+    "file": "assets/permission-a57a1b2f.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/pages/permission/permission.vue"
+  },
+  "resources/js/pages/permission/updatepermission.vue": {
+    "file": "assets/updatepermission-9e50292e.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/pages/permission/updatepermission.vue"
+  },
+  "resources/js/pages/permission/viewpermission.vue": {
+    "file": "assets/viewpermission-6e8088c7.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/pages/permission/viewpermission.vue"
+  },
+  "resources/js/pages/role/addrole.vue": {
+    "file": "assets/addrole-31202543.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/pages/role/addrole.vue"
+  },
+  "resources/js/pages/role/role.vue": {
+    "file": "assets/role-52006cb0.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/pages/role/role.vue"
+  },
+  "resources/js/pages/role/updaterole.vue": {
+    "file": "assets/updaterole-29415fab.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/pages/role/updaterole.vue"
+  },
+  "resources/js/pages/role/viewrole.vue": {
+    "file": "assets/viewrole-0130f939.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/pages/role/viewrole.vue"
+  },
+  "resources/js/pages/settings/index.vue": {
+    "file": "assets/index-35ded3e0.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/pages/settings/index.vue"
+  },
+  "resources/js/pages/settings/password.vue": {
+    "file": "assets/password-613eab4c.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/pages/settings/password.vue"
+  },
+  "resources/js/pages/settings/profile.vue": {
+    "file": "assets/profile-6affc89a.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/pages/settings/profile.vue"
+  },
+  "resources/js/pages/template1.css": {
+    "file": "assets/template1-e3b0c442.css",
+    "src": "resources/js/pages/template2.css"
+  },
+  "resources/js/pages/template1.vue": {
+    "css": [
+      "assets/template1-e3b0c442.css"
+    ],
+    "file": "assets/template1-f0aa61cf.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/pages/template1.vue"
+  },
+  "resources/js/pages/template2.css": {
+    "file": "assets/template1-e3b0c442.css",
+    "src": "resources/js/pages/template2.css"
+  },
+  "resources/js/pages/template2.vue": {
+    "css": [
+      "assets/template1-e3b0c442.css"
+    ],
+    "file": "assets/template2-2187143e.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/pages/template2.vue"
+  },
+  "resources/sass/app.scss": {
+    "file": "assets/app-041e359a.css",
+    "isEntry": true,
+    "src": "resources/sass/app.scss"
+  }
+}
