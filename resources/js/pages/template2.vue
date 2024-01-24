@@ -14,14 +14,20 @@
                 <input v-model="formData.prompt" type="text" class="form-control" id="prompt" required autofocus>
             </div>
 
+
             <div class="mb-3">
-                <label for="csvFile1" class="form-label">{{ ('CSV File1') }}</label>
+                <label for="csvFile1" class="form-label">{{ ('CSV File1 \'Columns\'') }}</label>
                 <input type="file" class="form-control" id="csvFile1" @change="handleFileChange1" accept=".csv">
             </div>
             <div class="mb-3">
-                <label for="csvFile2" class="form-label">{{ ('CSV File2') }}</label>
+                <label for="criteriaFile" class="form-label">{{ ('CSV File3 \'Criteria\'') }}</label>
+                <input type="file" class="form-control" id="criteriaFile" @change="handleFileChange3" accept=".csv">
+            </div>
+            <div class="mb-3">
+                <label for="csvFile2" class="form-label">{{ ('CSV File2 \'Rows\'') }}</label>
                 <input type="file" class="form-control" id="csvFile2" @change="handleFileChange2" accept=".csv">
             </div>
+
 
             <div class="mb-3">
                 <button type="submit" class="btn btn-primary">{{ ('RUN') }}</button>
@@ -40,8 +46,10 @@
                     prompt: '',
                     csvFile1: null,
                     csvFile2: null,
+                    criteriaFile: null,
                 }),
                 loading: false,
+                filename: '',
                 downloadProcessedFileAccess: false
             };
         },
@@ -49,7 +57,8 @@
             async submitForm() {
                 this.loading = true;
                 try {
-                    const { data } = await this.formData.post('/api/send-to-openaidoc2')
+                    const { data } = await this.formData.post('/api/send-to-openaidoc4')
+                    this.filename = data
                     this.$toast.success( 'Data processed successfully.',{ position: 'top-right', duration: 3000 })
                     // Call the download endpoint for the processed file
                     this.downloadProcessedFileAccess = true;
@@ -68,11 +77,14 @@
             handleFileChange2(event) {
                 // Update formData.csvFile when a file is selected
                 this.formData.csvFile2 = event.target.files[0];
+            },handleFileChange3(event) {
+                // Update formData.csvFile when a file is selected
+                this.formData.criteriaFile = event.target.files[0];
             },
             async downloadProcessedFile() {
                 try {
                     // Adjust the API endpoint URL
-                    const response = await this.$axios.get('/api/downloadProcessedFile', {
+                    const response = await this.$axios.get(`/api/downloadProcessedFile/${this.filename}`, {
                         responseType: 'blob', // Set the response type to 'blob' for file downloads
                     });
 

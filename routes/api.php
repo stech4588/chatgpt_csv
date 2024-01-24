@@ -69,8 +69,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 
     Route::post('/send-to-openai', [ChatController::class, 'sendToOpenAI']);
-    Route::post('/send-to-openaidoc2', [ChatController::class, 'sendToOpenAIDoc2']);
-    Route::get('/downloadProcessedFile', [ChatController::class, 'downloadProcessedFile']);
+//    Route::post('/send-to-openaidoc2', [ChatController::class, 'sendToOpenAIDoc2']);
+    Route::post('/send-to-openaidoc3', [ChatController::class, 'sendToOpenAIDoc3']);
+    Route::post('/send-to-openaidoc4', [ChatController::class, 'sendToOpenAIDoc4']);
+    Route::get('/downloadProcessedFile/{filename}', [ChatController::class, 'downloadProcessedFile']);
 
 
 });

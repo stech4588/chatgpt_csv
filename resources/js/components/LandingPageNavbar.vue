@@ -79,16 +79,6 @@ export default {
     },
     async mounted() {
 
-        try {
-            await this.$axios
-                .get('/api/categorylisting')
-                .then(response => {
-                    this.categories = response.data.data
-                })
-        } catch (e) {
-            handleError(e,this.$toast);
-        }
-
         const menu = document.querySelector(".menu");
         const menuMain = menu.querySelector(".menu-main");
         const goBack = menu.querySelector(".go-back");

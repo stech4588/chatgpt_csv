@@ -15,8 +15,12 @@
             </div>
 
             <div class="mb-3">
-                <label for="csvFile" class="form-label">{{ ('CSV File') }}</label>
-                <input type="file" class="form-control" id="csvFile" @change="handleFileChange" accept=".csv">
+                <label for="csvFile1" class="form-label">{{ ('CSV File1 \'Columns\'') }}</label>
+                <input type="file" class="form-control" id="csvFile1" @change="handleFileChange1" accept=".csv">
+            </div>
+            <div class="mb-3">
+                <label for="csvFile2" class="form-label">{{ ('CSV File2 \'Rows\'') }}</label>
+                <input type="file" class="form-control" id="csvFile2" @change="handleFileChange2" accept=".csv">
             </div>
 
             <div class="mb-3">
@@ -29,14 +33,16 @@
 
 <script>
     export default {
-        name:"template1",
+        name:"template2",
         data() {
             return {
                 formData: new this.$form({
                     prompt: '',
-                    csvFile: null,
+                    csvFile1: null,
+                    csvFile2: null,
                 }),
                 loading: false,
+                filename: '',
                 downloadProcessedFileAccess: false
             };
         },
@@ -44,10 +50,11 @@
             async submitForm() {
                 this.loading = true;
                 try {
-                    const { data } = await this.formData.post('/api/send-to-openai')
-                        this.$toast.success( 'Data processed successfully.',{ position: 'top-right', duration: 3000 })
-                        // Call the download endpoint for the processed file
-                        this.downloadProcessedFileAccess = true;
+                    const { data } = await this.formData.post('/api/send-to-openaidoc3')
+                    this.filename = data
+                    this.$toast.success( 'Data processed successfully.',{ position: 'top-right', duration: 3000 })
+                    // Call the download endpoint for the processed file
+                    this.downloadProcessedFileAccess = true;
                 } catch (e) {
                     handleError(e,this.$toast);
                     // window.location.reload();
@@ -56,14 +63,18 @@
                 this.formData.prompt = '';
                 // this.formData.csvFile = null;
             },
-            handleFileChange(event) {
+            handleFileChange1(event) {
                 // Update formData.csvFile when a file is selected
-                this.formData.csvFile = event.target.files[0];
+                this.formData.csvFile1 = event.target.files[0];
+            },
+            handleFileChange2(event) {
+                // Update formData.csvFile when a file is selected
+                this.formData.csvFile2 = event.target.files[0];
             },
             async downloadProcessedFile() {
                 try {
                     // Adjust the API endpoint URL
-                    const response = await this.$axios.get('/api/downloadProcessedFile', {
+                    const response = await this.$axios.get(`/api/downloadProcessedFile/${this.filename}`, {
                         responseType: 'blob', // Set the response type to 'blob' for file downloads
                     });
 
