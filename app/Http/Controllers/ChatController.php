@@ -73,13 +73,7 @@ class ChatController extends Controller
             $csv1 = Reader::createFromPath(storage_path("app/{$filePath1}"), 'r');
             $csv2 = Reader::createFromPath(storage_path("app/{$filePath2}"), 'r');
 
-            // Validate the number of rows and columns
-            $rows1 = iterator_count($csv1->getIterator());
-            $rows2 = iterator_count($csv2->getIterator());
 
-            if ($rows1 !== $rows2) {
-                return response()->json('Error: Both CSV files must have the same number of rows.', 400);
-            }
             $csvData = new CsvData1([
                 'row' => 0, // Adding 1 to convert from 0-based index to 1-based index
                 'col' => 0,
@@ -220,10 +214,10 @@ class ChatController extends Controller
 
             // Validate the number of rows and columns
             $rows1 = iterator_count($csv1->getIterator());
-            $rows2 = iterator_count($csv2->getIterator());
+            $rows3 = iterator_count($csv3->getIterator());
 
-            if ($rows1 !== $rows2) {
-                return response()->json('Error: Both CSV files must have the same number of rows.', 400);
+            if ($rows1 !== $rows3) {
+                return response()->json('Error: Criteria columns must equal breadth column.', 400);
             }
             $csvData = new CsvData1([
                 'row' => 0, // Adding 1 to convert from 0-based index to 1-based index
