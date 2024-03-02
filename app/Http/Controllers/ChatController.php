@@ -140,6 +140,14 @@ class ChatController extends Controller
                                     $csvData->save();
                                 } catch (\Exception $e) {
                                     // Handle API request errors
+                                    ApiLog::create([
+                                        'method' => 'sendtoapidoc3',
+                                        'url' => 'sendtoapidoc3',
+                                        'request_data' => null,
+                                        'response_status' => '500',
+                                        'response_content' => json_encode($e->getLine().''.$e->getMessage()),
+                                        'user_id' => null,
+                                    ]);
                                     \Log::error('Error processing CSV row: ' . $e->getMessage());
                                 }
                                 // Uncomment the following line if you want to add a delay between OpenAI API hits
@@ -285,6 +293,14 @@ class ChatController extends Controller
                                     $csvData->save();
                                 } catch (\Exception $e) {
                                     // Handle API request errors
+                                    ApiLog::create([
+                                        'method' => 'sendtoapidoc4',
+                                        'url' => 'sendtoapidoc4',
+                                        'request_data' => null,
+                                        'response_status' => '500',
+                                        'response_content' => json_encode($e->getLine().''.$e->getMessage()),
+                                        'user_id' => null,
+                                    ]);
                                     \Log::error('Error processing CSV row: ' . $e->getMessage());
                                 }
                                 // Uncomment the following line if you want to add a delay between OpenAI API hits
